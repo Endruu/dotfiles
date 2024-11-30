@@ -60,3 +60,8 @@ alias :q=exit
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Start or attach to tmux
+if [[ -z "$TMUX" ]]; then
+  tmux attach || tmux new
+fi
