@@ -2,38 +2,33 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-
 set -e
 
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -yqq
 
 sudo apt install -yqq \
 	sudo \
 	curl wget \
 	build-essential \
 	gpg ca-certificates software-properties-common \
-	zoxide \
 	zsh \
 	tmux \
 	taskwarrior \
 	zip unzip \
 	python3 python3-distutils \
 	ripgrep fd-find fzf \
+	clang-16 clangd-16 clang-format-16 \
 	git git-lfs
-
 
 tmp_dir=`mktemp -d`
 pushd $tmp_dir
-
-
 
 # --- Install rust
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh
 sh rustup.sh -y
 source $HOME/.cargo/env
-
 
 # --- Install go
 
@@ -42,7 +37,9 @@ sudo tar -C /usr/local -xzf go1.23.2.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 
-# --- Install common tools
+# --- Install common tools missing from apt
+
+curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
 cargo install eza
 cargo install bottom
@@ -73,11 +70,14 @@ sudo cp $SCRIPT_DIR/wsl.conf /etc/wsl.conf
 sudo $SCRIPT_DIR/install_docker.sh
 sudo usermod -aG docker $USER
 
+# -- Copy config files
 
-cp $SCRIPT_DIR/.mysrc $HOME/
+cp $SCRIPT_DIR/.zshrc $HOME/
+cp -r $SCRIPT_DIR/nvim $HOME/.config/
+cp -r $SCRIPT_DIR/tmux $HOME/.config/
 
 popd
 rm -rf $tmp_dir
 
-chsh -s $(which zsh) endruu
+sudo chsh -s $(which zsh) endruu
 
