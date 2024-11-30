@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ZINIT_HOME=$HOME/.local/share/zinit
 
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -42,12 +49,7 @@ bindkey -v
 bindkey ^R history-incremental-search-backward
 bindkey ^S history-incremental-search-forward
 
-
-source $HOME/.cargo/env
-source $HOME/.local/bin/env
-
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin/
+source $HOME/.zshenv
 
 alias ll="eza -lah --git --group-directories-first"
 alias lg=lazygit
@@ -55,3 +57,6 @@ alias nn="nvim ."
 alias pip="uv pip"
 alias venv="uv venv"
 alias :q=exit
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

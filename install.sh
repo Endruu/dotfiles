@@ -35,7 +35,7 @@ source $HOME/.cargo/env
 wget https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.23.2.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
+export GOPATH=$HOME/.go
 
 # --- Install common tools missing from apt
 
@@ -73,6 +73,9 @@ sudo usermod -aG docker $USER
 # -- Copy config files
 
 cp $SCRIPT_DIR/.zshrc $HOME/
+cp $SCRIPT_DIR/.zshenv $HOME/
+cp $SCRIPT_DIR/.p10k.zsh $HOME/
+cp $SCRIPT_DIR/go.env $GOPATH/env
 cp -r $SCRIPT_DIR/nvim $HOME/.config/
 cp -r $SCRIPT_DIR/tmux $HOME/.config/
 
