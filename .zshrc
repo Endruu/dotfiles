@@ -68,5 +68,5 @@ export NVM_DIR="$HOME/.nvm"
 # Start or attach to tmux
 if [[ -z "$TMUX" ]]; then
   cd $HOME
-  tmux attach || tmux new
+  tmux new
 fi
