@@ -3,12 +3,12 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
-    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+    { 'williamboman/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependants
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP.
-    { 'j-hui/fidget.nvim', opts = { text = { spinner = 'dots' } } },
+    { 'j-hui/fidget.nvim',       opts = {} },
 
     -- Allows extra capabilities provided by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
@@ -55,7 +55,6 @@ return {
               vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
             end,
           })
-
         end
 
         -- The following code creates a keymap to toggle inlay hints in your
@@ -74,7 +73,11 @@ return {
     local servers = {
       clangd = {},
       gopls = {},
-      rust_analyzer = {},
+      -- rust_analyzer = {
+      --   cmd = {
+      --     'rustup', 'run', 'stable', 'rust-analyzer'
+      --   }
+      -- },
 
       -- {
       --   "pmizio/typescript-tools.nvim",
@@ -94,8 +97,6 @@ return {
         },
       },
     }
-
-    require('mason').setup()
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.

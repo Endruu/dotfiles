@@ -95,11 +95,11 @@ return {
     vim.keymap.set('n', '<leader>fx', require('telescope.builtin').builtin, { desc = 'Find Builtin Pickers' })
 
     vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Find Files' })
-    vim.keymap.set('n', '<leader>ff', find_all_files, { desc = 'Find All Files' })
+    vim.keymap.set('n', '<leader>faf', find_all_files, { desc = 'Find All Files' })
+    vim.keymap.set('n', '<leader>fof', require('telescope.builtin').oldfiles, { desc = 'Find Old Files' })
     vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Find Buffers' })
     vim.keymap.set('n', '<leader>fs', require('telescope.builtin').lsp_document_symbols, { desc = 'Find Symbols' })
     vim.keymap.set('n', '<leader>fS', require('telescope.builtin').treesitter, { desc = 'Find Symbols (treesitter)' })
-    vim.keymap.set('n', '<leader>fS', require('telescope.builtin').oldfiles, { desc = 'Find Old Symbols' })
     vim.keymap.set('n', '<leader>fr', find_references, { desc = 'Find References' })
     vim.keymap.set('n', '<leader>fl', find_last, { desc = 'Find Last' })
     vim.keymap.set('n', '<leader>fif', find_in_files, { desc = 'Find In Files' })
