@@ -1,3 +1,31 @@
+local servers = {
+  clangd = {},
+  gopls = {},
+  pylsp = {},
+      clangd = {
+        on_attach = function()
+          require('config.helpers').mapl_n('sh', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch between source and header', { buffer = true })
+        end
+      },
+  -- rust_analyzer = {
+  --   cmd = {
+  --     'rustup', 'run', 'stable', 'rust-analyzer'
+  --   }
+  -- },
+
+  lua_ls = {
+    settings = {
+      Lua = {
+        completion = {
+          callSnippet = 'Replace',
+        },
+        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+        -- diagnostics = { disable = { 'missing-fields' } },
+      },
+    },
+  },
+}
+
 return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
@@ -106,38 +134,6 @@ return {
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-    local servers = {
-      clangd = {
-        on_attach = function()
-          require('config.helpers').mapl_n('sh', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch between source and header', { buffer = true })
-        end
-      },
-      gopls = {},
-      -- rust_analyzer = {
-      --   cmd = {
-      --     'rustup', 'run', 'stable', 'rust-analyzer'
-      --   }
-      -- },
-
-      -- {
-      --   "pmizio/typescript-tools.nvim",
-      --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-      --   opts = {},
-      -- },
-
-      lua_ls = {
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = 'Replace',
-            },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
-          },
-        },
-      },
-    }
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
