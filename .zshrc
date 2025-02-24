@@ -56,10 +56,14 @@ alias lg=lazygit
 alias nn="nvim ."
 alias pip="uv pip"
 alias venv="uv venv"
+alias md="mkdir -p"
 alias :q=exit
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# clean up PATH
+export PATH="$(python3 -c "import os; print(':'.join(dict.fromkeys(map(os.path.normpath, os.environ['PATH'].split(':'))).keys()))")"
 
 # Start or attach to tmux
 if [[ -z "$TMUX" ]]; then
