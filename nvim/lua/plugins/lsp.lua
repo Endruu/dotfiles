@@ -1,6 +1,7 @@
 return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
+  event = 'VimEnter',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     { 'williamboman/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependants
@@ -60,12 +61,41 @@ return {
         -- The following code creates a keymap to toggle inlay hints in your
         -- code, if the language server you are using supports them
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          map('<leader>tih', function()
+          map('<leader>th', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-          end, '[T]oggle [I]nlay [H]ints')
+          end, '[T]oggle Inlay [H]ints')
         end
       end,
     })
+
+    -- Diagnostic Config
+    -- See :help vim.diagnostic.Opts
+    vim.diagnostic.config {
+      severity_sort = true,
+      float = { border = 'rounded', source = 'if_many' },
+      underline = { severity = vim.diagnostic.severity.ERROR },
+      signs = vim.g.have_nerd_font and {
+        text = {
+          [vim.diagnostic.severity.ERROR] = '󰅚 ',
+          [vim.diagnostic.severity.WARN] = '󰀪 ',
+          [vim.diagnostic.severity.INFO] = '󰋽 ',
+          [vim.diagnostic.severity.HINT] = '󰌶 ',
+        },
+      } or {},
+      virtual_text = {
+        source = 'if_many',
+        spacing = 2,
+        format = function(diagnostic)
+          local diagnostic_message = {
+            [vim.diagnostic.severity.ERROR] = diagnostic.message,
+            [vim.diagnostic.severity.WARN] = diagnostic.message,
+            [vim.diagnostic.severity.INFO] = diagnostic.message,
+            [vim.diagnostic.severity.HINT] = diagnostic.message,
+          }
+          return diagnostic_message[diagnostic.severity]
+        end,
+      },
+    }
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
