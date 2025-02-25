@@ -1,0 +1,19 @@
+
+function python3() {
+    echo "My python3"
+    # Check if the first argument is "-m pip"
+    if [[ "$1" == "-m" && "$2" == "pip" ]]; then
+        # Call uv instead
+        shift 2
+        uv pip "$@"
+    elif [[ "$1" == "-m" && "$2" == "venv" ]]; then
+        # Call uv instead
+        shift 2
+        uv venv "$@"
+    else
+        # Otherwise, call the original python3
+        command python3 "$@"
+    fi
+}
+
+export ENDRUU_PROFILE_SOURCED=1

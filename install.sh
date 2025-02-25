@@ -86,12 +86,13 @@ sudo usermod -aG docker $USER
 
 # -- Copy config files
 
+# TODO: Change to ln -s or stow
 cp $SCRIPT_DIR/.zshrc $HOME/
-cp $SCRIPT_DIR/.zshenv $HOME/
+cp $SCRIPT_DIR/.env $HOME/
 cp $SCRIPT_DIR/.p10k.zsh $HOME/
-cp $SCRIPT_DIR/go.env $GOPATH/env
 cp -r $SCRIPT_DIR/nvim $HOME/.config/
 cp -r $SCRIPT_DIR/tmux $HOME/.config/
+
 
 popd
 rm -rf $tmp_dir

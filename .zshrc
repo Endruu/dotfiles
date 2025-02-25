@@ -1,3 +1,10 @@
+if [ -z "$TMUX" ]; then
+  cd $HOME/w
+  exec tmux new-session -A -s workspace
+fi
+
+source $HOME/dotfiles/.env
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -44,12 +51,13 @@ zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
 
 eval "$(zoxide init --cmd cd zsh)"
 
+# vi style keybindings
 bindkey -v
 
 bindkey ^R history-incremental-search-backward
 bindkey ^S history-incremental-search-forward
 
-source $HOME/.zshenv
+# source $HOME/.venv/bin/activate
 
 alias ll="eza -lah --git --group-directories-first"
 alias lg=lazygit
@@ -62,11 +70,3 @@ alias :q=exit
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# clean up PATH
-export PATH="$(python3 -c "import os; print(':'.join(dict.fromkeys(map(os.path.normpath, os.environ['PATH'].split(':'))).keys()))")"
-
-# Start or attach to tmux
-if [[ -z "$TMUX" ]]; then
-  cd $HOME
-  tmux new
-fi
