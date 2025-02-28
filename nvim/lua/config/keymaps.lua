@@ -33,8 +33,8 @@ h.map_n('<leader><leader>', '<cmd>b#<CR>', 'Go to previous buffer')
 h.map_n('-', '<cmd>Oil<CR>', 'Open Oil file explorer')
 
 -- Search and Replace
-h.mapl_v('sr', 'y:%s/<C-r>0//g<Left><Left>', 'Search and replace')
-h.mapl_v('sm', 'y:%s/<C-r>0/<C-r>0/g<Left><Left>', 'Search and modify')
+h.mapl_v('sr', 'y:%s/<C-r>0//g<Left><Left>', 'Search and replace', { silent = false })
+h.mapl_v('sm', 'y:%s/<C-r>0/<C-r>0/g<Left><Left>', 'Search and modify', { silent = false })
 
 -- Telescope
 vim.schedule(function()

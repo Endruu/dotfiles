@@ -9,27 +9,27 @@ M.map = function(mode, lhs, rhs, desc, opts)
 end
 
 M.map_n = function(lhs, rhs, desc, opts)
-  M.map('n', lhs, rhs, opts)
+  M.map('n', lhs, rhs, desc, opts)
 end
 
 M.map_v = function(lhs, rhs, desc, opts)
-  M.map('n', lhs, rhs, opts)
+  M.map('v', lhs, rhs, desc, opts)
 end
 
 M.mapl = function(mode, lhs, rhs, desc, opts)
-  M.map(mode, '<leader>' .. lhs, rhs, opts)
+  M.map(mode, '<leader>' .. lhs, rhs, desc, opts)
 end
 
 M.mapl_n = function(lhs, rhs, desc, opts)
-  M.mapl('n', lhs, rhs, opts)
+  M.mapl('n', lhs, rhs, desc, opts)
 end
 
 M.mapl_v = function(lhs, rhs, desc, opts)
-  M.mapl('v', lhs, rhs, opts)
+  M.mapl('v', lhs, rhs, desc, opts)
 end
 
 M.mapl_nv = function(lhs, rhs, desc, opts)
-  M.mapl({'n', 'v'}, lhs, rhs, opts)
+  M.mapl({'n', 'v'}, lhs, rhs, desc, opts)
 end
 
 M.with_opts = function(func, opts)

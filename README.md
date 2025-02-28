@@ -9,4 +9,3 @@
 - [ ] Add lazy-docker
 - [ ] Take care of distro update
 - [ ] LSP seems to be acting up
-- [ ] `<leader>sr` and `<leader>sm` is not showin up in status line
