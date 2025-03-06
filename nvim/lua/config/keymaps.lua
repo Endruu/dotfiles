@@ -12,7 +12,6 @@ h.map('v', 'y', 'ygv<Esc>', 'Yank, but keep the cursor at its current position')
 
 -- Diagnostic keymaps
 h.mapl_n('q', vim.diagnostic.setloclist, 'Open diagnostic Quickfix list')
-h.mapl_n('e', vim.diagnostic.open_float, 'Show diagnostic Error messages')
 
 -- Indenting
 h.map_v('<', '<gv', 'Decrease indent and keep selection')
