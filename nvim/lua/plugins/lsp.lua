@@ -18,18 +18,25 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
-        local map = function(keys, func, desc, mode)
-          mode = mode or 'n'
-          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+        local mapl_n = function(keys, func, desc)
+          require("config.helpers").mapl_n(keys, func, desc, { buffer = true })
+        end
+        local map_n = function(keys, func, desc)
+          require("config.helpers").map_n(keys, func, desc, { buffer = true })
         end
 
-        map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-        map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-        map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+        map_n('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+        map_n('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map_n('gs', vim.lsp.buf.signature_help, 'Signature Help')
+        map_n('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-        map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
-        map('<leader>fmt', vim.lsp.buf.format, 'Format document')
+        mapl_n('D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+        mapl_n('ic', require('telescope.builtin').lsp_incoming_calls, 'List incoming calls')
+        mapl_n('oc', require('telescope.builtin').lsp_outgoing_calls, 'List outgoing calls')
+
+        mapl_n('rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        mapl_n('ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+        map_n('<C-f>', vim.lsp.buf.format, 'Format document')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -61,7 +68,7 @@ return {
         -- The following code creates a keymap to toggle inlay hints in your
         -- code, if the language server you are using supports them
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          map('<leader>th', function()
+          mapl_n('th', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
           end, '[T]oggle Inlay [H]ints')
         end
@@ -101,7 +108,11 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     local servers = {
-      clangd = {},
+      clangd = {
+        on_attach = function()
+          require('config.helpers').mapl_n('sh', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch between source and header', { buffer = true })
+        end
+      },
       gopls = {},
       -- rust_analyzer = {
       --   cmd = {
