@@ -1,1 +1,5 @@
-return { 'echasnovski/mini.bracketed', version = false, opts = {} }
+return { 'echasnovski/mini.bracketed',
+  version = false,
+  event = 'BufEnter',
+  opts = {}
+}

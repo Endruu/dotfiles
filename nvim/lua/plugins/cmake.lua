@@ -1,5 +1,6 @@
 return {
   'Civitasv/cmake-tools.nvim',
+  event = 'VeryLazy',
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
@@ -29,7 +30,6 @@ return {
     h.mapl_n('ms', '<cmd>CMakeStopExecutor<CR>', 'Stop building')
     h.mapl_n('mi', info, 'Print CMake project info')
   end,
-  event = 'VimEnter',
   cond = function()
     -- only load if we are in cmake project
     return vim.fn.filereadable(vim.fn.getcwd() .. "/CMakeLists.txt") == 1

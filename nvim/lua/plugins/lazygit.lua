@@ -1,1 +1,1 @@
-return { 'kdheepak/lazygit.nvim', event = 'VimEnter' }
+return { 'kdheepak/lazygit.nvim', event = 'VeryLazy' }

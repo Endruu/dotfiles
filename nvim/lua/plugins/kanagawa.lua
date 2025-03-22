@@ -4,6 +4,7 @@ return {
     require("kanagawa").setup({
       compile = true,
       transparent = true,
+      -- theme = 'lotus',
       colors = {
         theme = {
           all = {
