@@ -35,12 +35,10 @@ return {
     { 'williamboman/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependants
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'saghen/blink.cmp',
 
-    -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim',       opts = {} },
 
-    -- Allows extra capabilities provided by nvim-cmp
-    'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -133,7 +131,7 @@ return {
     }
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities);
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
