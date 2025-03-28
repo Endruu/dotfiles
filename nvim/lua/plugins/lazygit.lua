@@ -1,1 +1,6 @@
-return { 'kdheepak/lazygit.nvim', event = 'VeryLazy' }
+return {
+  'kdheepak/lazygit.nvim',
+  keys = {
+    { '<leader>lg', ':LazyGit<CR>', desc= 'Open LazyGit' },
+  },
+}

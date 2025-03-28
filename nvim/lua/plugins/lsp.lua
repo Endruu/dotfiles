@@ -29,7 +29,7 @@ local servers = {
 return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
-  event = 'BufEnter',
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     { 'williamboman/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependants
@@ -51,14 +51,14 @@ return {
           require("config.helpers").map_n(keys, func, desc, { buffer = true })
         end
 
-        map_n('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-        map_n('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-        map_n('gs', vim.lsp.buf.signature_help, 'Signature Help')
-        map_n('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-
-        mapl_n('D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-        mapl_n('ic', require('telescope.builtin').lsp_incoming_calls, 'List incoming calls')
-        mapl_n('oc', require('telescope.builtin').lsp_outgoing_calls, 'List outgoing calls')
+        -- map_n('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+        -- map_n('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        -- map_n('gs', vim.lsp.buf.signature_help, 'Signature Help')
+        -- map_n('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+        --
+        -- mapl_n('D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+        -- mapl_n('ic', require('telescope.builtin').lsp_incoming_calls, 'List incoming calls')
+        -- mapl_n('oc', require('telescope.builtin').lsp_outgoing_calls, 'List outgoing calls')
 
         mapl_n('rn', vim.lsp.buf.rename, '[R]e[n]ame')
         mapl_n('ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
