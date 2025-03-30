@@ -35,6 +35,7 @@ return {
     { 'williamboman/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependants
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'saghen/blink.cmp',
 
     { 'j-hui/fidget.nvim',       opts = {} },
 
