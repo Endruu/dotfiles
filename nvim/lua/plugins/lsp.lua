@@ -1,12 +1,12 @@
 local servers = {
-  clangd = {},
   gopls = {},
   pylsp = {},
-      clangd = {
-        on_attach = function()
-          require('config.helpers').mapl_n('sh', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch between source and header', { buffer = true })
-        end
-      },
+  clangd = {
+    on_attach = function()
+      require('config.helpers').mapl_n('sh', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch between source and header',
+        { buffer = true })
+    end
+  },
   -- rust_analyzer = {
   --   cmd = {
   --     'rustup', 'run', 'stable', 'rust-analyzer'
