@@ -51,14 +51,14 @@ return {
           require("config.helpers").map_n(keys, func, desc, { buffer = true })
         end
 
-        -- map_n('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-        -- map_n('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-        -- map_n('gs', vim.lsp.buf.signature_help, 'Signature Help')
-        -- map_n('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-        --
-        -- mapl_n('D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-        -- mapl_n('ic', require('telescope.builtin').lsp_incoming_calls, 'List incoming calls')
-        -- mapl_n('oc', require('telescope.builtin').lsp_outgoing_calls, 'List outgoing calls')
+        map_n('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
+        map_n('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map_n('gs', vim.lsp.buf.signature_help, 'Signature Help')
+        map_n('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
+
+        mapl_n('D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
+        mapl_n('ic', require('fzf-lua').lsp_incoming_calls, 'List incoming calls')
+        mapl_n('oc', require('fzf-lua').lsp_outgoing_calls, 'List outgoing calls')
 
         map_n('<C-f>', vim.lsp.buf.format, 'Format document')
 
