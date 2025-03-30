@@ -60,8 +60,6 @@ return {
         -- mapl_n('ic', require('telescope.builtin').lsp_incoming_calls, 'List incoming calls')
         -- mapl_n('oc', require('telescope.builtin').lsp_outgoing_calls, 'List outgoing calls')
 
-        mapl_n('rn', vim.lsp.buf.rename, '[R]e[n]ame')
-        mapl_n('ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
         map_n('<C-f>', vim.lsp.buf.format, 'Format document')
 
         -- The following two autocommands are used to highlight references of the
