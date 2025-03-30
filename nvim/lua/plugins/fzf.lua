@@ -3,7 +3,8 @@ local function km(key, func_name, desc)
     '<leader>' .. key,
     function()
       require('fzf-lua')[func_name]()
-    end
+    end,
+    desc = desc,
   }
 end
 
