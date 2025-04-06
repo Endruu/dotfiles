@@ -31,6 +31,8 @@ vim.opt.breakindent = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
+vim.opt.confirm = true
+
 -- Sync clipboard between OS and Neovim.
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
 vim.schedule(function()
