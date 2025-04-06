@@ -66,9 +66,7 @@ source $HOME/.local/bin/env
 
 # --- Install nvim
 
-wget https://github.com/neovim/neovim/releases/download/v0.10.3/nvim-linux64.tar.gz
-tar xzf nvim-linux64.tar.gz
-sudo cp -r nvim-linux64/* /usr/
+sudo ./install/neovim_0.11.sh
 
 # --- Setup git
 
