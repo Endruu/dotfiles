@@ -24,8 +24,8 @@ h.mapl_nv("c", [["_c]], "Change without copy")
 h.mapl_nv("x", [["_x]], "Delete without copy")
 
 -- Misc
--- h.mapl_n('lg', ':LazyGit<CR>', 'Open LazyGit')
 h.mapl_n('tvt', h.toggle_virtual_text, 'Toggle Virtual Text and other fancy stuff')
+h.map_n('gK', h.toggle_virtual_lines, 'Toggle Virtual Lines')
 
 -- Navigation
 h.map_n('<leader><leader>', '<cmd>b#<CR>', 'Go to previous buffer')
