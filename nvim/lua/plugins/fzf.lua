@@ -19,6 +19,11 @@ return
         layout = 'vertical',
       },
     },
+    keymap = {
+      fzf = {
+        ["ctrl-q"] = "select-all+accept",
+      },
+    },
   },
   keys = {
     km('ff', 'files', 'Find Files'),
