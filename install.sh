@@ -55,11 +55,7 @@ export GOPATH=$HOME/.go
 
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
-cargo install eza
-cargo install bottom
-
-go install github.com/jesseduffield/lazygit@latest
-go install github.com/gokcehan/lf@latest
+./install/non_apt_packages.sh
 
 curl -LsSf https://astral.sh/uv/0.5.14/install.sh | sh
 source $HOME/.local/bin/env
@@ -73,10 +69,6 @@ sudo ./install/neovim_0.11.sh
 source $SCRIPT_DIR/setup_git.sh
 source $SCRIPT_DIR/.private/setup_git.sh
 
-# --- Setup wsl distro
-
-sudo cp $SCRIPT_DIR/wsl.conf /etc/wsl.conf
-
 # --- Install Docker
 
 sudo $SCRIPT_DIR/install_docker.sh
@@ -85,6 +77,7 @@ sudo usermod -aG docker $USER
 # -- Copy config files
 
 # TODO: Change to ln -s or stow
+sudo cp $SCRIPT_DIR/wsl.conf /etc/wsl.conf
 cp $SCRIPT_DIR/.zshrc $HOME/
 cp $SCRIPT_DIR/.env $HOME/
 cp $SCRIPT_DIR/.p10k.zsh $HOME/
