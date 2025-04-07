@@ -10,8 +10,8 @@ is_nvim_installed() {
 uninstall_nvim() {
     echo "Uninstalling Neovim..."
     rm /usr/bin/nvim
-    rm /usr/share/nvim
-    rm -r /usr/nvim-linux64
+    rm -rf /usr/share/nvim
+    rm -rf /usr/nvim-linux64
     rm -rf ~/.local/share/nvim
     rm -rf ~/.cache/nvim
     echo "Neovim has been forcefully uninstalled."
@@ -29,8 +29,8 @@ else
     cd $TEMP_DIR
     trap 'cd - && rm -rf "$TEMP_DIR"' EXIT
 
-    wget https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux64.tar.gz
-    tar xvzf nvim-linux64.tar.gz
-    cp -r nvim-linux64/* /usr/
+    wget https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.tar.gz
+    tar xvzf nvim-linux-x86_64.tar.gz
+    cp -r nvim-linux-x86_64/* /usr/
     echo "Neovim installed successfully."
 fi
