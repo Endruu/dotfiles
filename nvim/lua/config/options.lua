@@ -16,7 +16,7 @@ vim.opt.undofile = true
 vim.opt.scrolloff = 10
 vim.opt.mouse = 'a'
 
-vim.opt.showmode = false  -- Don't show the mode, since it's already in the status line
+vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
 vim.opt.cmdheight = 0
 
 vim.opt.ignorecase = true -- Case-insensitive searching UNLESS \C
@@ -37,4 +37,5 @@ vim.opt.confirm = true
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
+  require('fzf-lua').register_ui_select()
 end)
